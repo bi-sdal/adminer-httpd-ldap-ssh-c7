@@ -9,13 +9,13 @@ RUN yum -y --setopt=tsflags=nodocs update && \
 
 RUN rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
     yum-config-manager --enable remi-php71 && \
-    yum -y install php php-opcache
+    yum -y install php php-opcache php-pgsql php-pdo
 
 RUN cd /var/www/html && \
     wget -O index.php https://www.adminer.org/latest.php
 
 RUN systemctl enable httpd
 
-EXPOSE 80 8080
+EXPOSE 80
 
 CMD ["/lib/systemd/systemd"]
